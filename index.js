@@ -1,0 +1,158 @@
+//Declare the UI elelments
+var ul = document.getElementById('ul')
+var nextButton = document.getElementById('btnNext');
+var quizbox = document.getElementById('questionBox')
+var opt1 = document.getElementById('opt1')
+var opt2 = document.getElementById('opt2')
+var opt3 = document.getElementById('opt3')
+var opt4 = document.getElementById('opt4')
+
+
+var app= {
+        questions:[
+   {
+      q: "How old is the art of barbecue?",
+      options: [
+        "a. Created during the 1950s",
+        "b. Invented by Abraham Lincoln in 1830",
+        "c. Has been around ever since meat was cooked over an open flame",
+        "d. Since Roman times",
+      ],
+      answer:
+        3,
+    },
+    //2
+    {
+      q: "What are the major barbecue styles of the United States?",
+      options: [
+        "a. North, South, East, West",
+        "b. Maine style and Oregon Style",
+        "c. New York, Deep Dish, and Detroit",
+        "d. Texas, Carolina, Kansas City, Alabama",
+      ],
+      answer: 4,
+    },
+    //3
+    {
+      q: "Which style is known for using beef as the main meat source?",
+      options: ["a. Carolina", "b. Alabama", "c. Kansas City", "d. Texas"],
+      answer: 4,
+    },
+    //4
+    {
+      q:"Which region is famous for having 3 different styles of barbecue?",
+      options: ["a. Alabama", "b. Carolina", "c. Texas", "d. Kansas City"],
+      answer: 2,
+    },
+    //5
+    {
+      q: "Which region is considered the crossroads of BBQ?",
+      options: ["a. Texas", "b. Alabama", "c. Kansas City", "d. Florida"],
+      answer: 3,
+    },
+    //6
+    {
+      q: "Which style is famous for white barbecue sauce?",
+      options: [
+        "a. Alabama",
+        "b. Delaware",
+        "c. Pacific Northwest",
+        "d. Homestyle",
+      ],
+      answer: 1,
+    },
+    //7
+    {
+      q: "How is barbecue typically cooked?",
+      options: [
+        "a. Hot and Fast",
+        "b. Cold and Quick",
+        "c. Microwave",
+        "d. Low and Slow",
+      ],
+      answer: 4,
+    },
+    //8
+    {
+      q: "What temperature is most barbecue cooked to?",
+      opstions: ["a. 145°F", "b. 32°F", "c. 203°C", " d. 203°F"],
+      answer: 4,
+    },
+    //9
+    {
+      q: "What type of heat is used for cooking barbecue?",
+      options: ["a.Searing", "b.Indirect heat", "c.Sous Vide", "d.Flash Fry"],
+      answer: 2,
+    },
+    //10
+    {
+      q: "Which tool is most important for cooking barbecue?",
+      options: ["a. Kitchen Sink", "b. Grill/Smoker", "c. Knife", "d. Spatula"],
+      answer: 2,
+            }            
+        ],
+        index:0,
+
+        //Load the question according to the index of that question 
+        load:function(){
+            if(this.index<=this.questions.length-1){
+                quizbox.innerHTML=this.index+1 + ". " +this.questions[this.index].q;
+                opt1.innerHTML=this.questions[this.index].options[0];
+                opt2.innerHTML=this.questions[this.index].options[1];
+                opt3.innerHTML=this.questions[this.index].options[2];
+                opt4.innerHTML=this.questions[this.index].options[3];
+            }
+            else {
+                quizbox.innerHTML="Quiz Completed!";
+                ul.style.display="none";
+                nextButton.style.display="none";
+            }
+        },
+        //increase the question index after "Next" button is clicked
+        next: function(){
+            this.index++;
+            this.load();
+        },
+        //Get the option that was clicked and extract that option and apply the style class
+        check: function(ele){
+            var id=ele.id.split('');
+            if(id[id.length-1]==this.questions[this.index].answer){
+                this.score++;
+                ele.className="correct";
+                this.scoreCard();
+            }
+            else{
+                ele.className="wrong";
+            }
+        },
+        //Prevent user to change answer after one has been selected
+        preventClick:function(){
+            for(let i=0; i<ul.children.length; i++){
+                ul.children[i].style.pointerEvents="none";
+            }
+        },
+        //Allow user to click answer options
+        allowClick:function(){
+            for(let i=0; i<ul.children.length; i++){
+                ul.children[i].style.pointerEvents="auto";
+                ul.children[i].className=''
+            }
+        },
+        //When an answewred question is correct, the score is increased by one
+        score:0,
+        //
+        scoreCard:function(){
+            scoreCard.innerHTML= this.score + "/" + this.questions.length;
+        }
+}
+//When the window loads, the app will load
+window.load=app.load();
+//F'n callled when an option is clicked
+function button(ele){
+    app.check(ele);
+    app.preventClick();
+}
+//When next button is clicked, call the next function which will load up the next question
+function next(){
+    app.next();
+    app.allowClick()}
