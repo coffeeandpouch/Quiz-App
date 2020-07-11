@@ -101,7 +101,13 @@ const STORE = {
     } else if (this.quizStarted) {
       container.html(`
       <div>${this.questions[this.questionIndex].question}</div>
-      <div>${this.questionIndex[this.options]}</div>
+      <div>${this.questions[this.questionIndex].options}</div>
+      <ul id="ul">
+                <li id="opt1" onclick="button(this)"></li>
+                <li id="opt2" onclick="button(this)"></li>
+                <li id="opt3" onclick="button(this)"></li>
+                <li id="opt4" onclick="button(this)"></li>
+            </ul>     
       <button id="btnNext" type="button">
                 Next</button>
       `);
