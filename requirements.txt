@@ -1,0 +1,72 @@
+User Stories
+
+Format:
+  Target User
+  Goal / Want / Need
+  Outcome / Solution
+
+Technical Requirements:
+
+  Render answer choices in a <form>.
+  Use semantic HTML, along with CSS and jQuery.
+  Follow a11y best practices. Refer back to the checkpoints on accessibility and forms for help.
+  Use responsive design.
+  Be fully usable by keyboard (which will be easy enough if you start with a form).
+  Deploy your app on GitHub using GitHub pages.
+  Create a Gist with the a link to the live page and your repo.
+
+Requirement 1: The starting screen should have a button that users can click to start the quiz.
+
+  When I visit the homepage
+  So that I can see the first question
+  I should be presented with a button to start the quiz
+
+Requirement 2: Users should be asked questions 1 after the other / Users should only be prompted with 1 question at a time.
+
+  When I start the quiz
+  So that I can receive the next question
+  I should be presented with one question I can answer
+
+Requirement 3: Users should be prompted through a series of at least 5 multiple choice questions that they can answer.
+
+  When I take the quiz
+  So that I can see the state of my current knowledge on the subject
+  I should be presented with 5 multiple choice questions
+
+Requirement 4: Users should not be able to skip questions.
+
+  When I take the quiz
+  So that I can have my overall score calculated
+  I must provide an answer to each question
+
+Requirement 5: Users should also be able to see which question they are on.
+
+  When I take the quiz
+  So I know how far along I have progressed with the quiz
+  I should see the current question number and the total number of questions
+
+  When I take the quiz
+  So I know the state of my understanding at this point in the quiz
+  I should see the number of correct and wrong answers
+
+Requirement 6: Upon submitting an answer user should receive feedback.
+
+  When I answer a question
+  So that I may know the answer to each question
+  I should be provided the correct answer if I was wrong
+
+  When I answer a question
+  So that I can reinforce my knowledge on the subject
+  I should be told if I answered the question correctly
+
+Requirement 7: Users should be shown their overall score at the end of the quiz.
+
+  When I complete the quiz
+  So that I know my overall knowledge on the subject
+  I should be able to see my final score
+
+Requirement 8: Users should be able to start a new quiz.
+
+  When I complete the quiz
+  So that I may retest my knowledge
+  I should be able to restart the quiz 
