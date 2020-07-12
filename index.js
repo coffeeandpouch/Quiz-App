@@ -157,7 +157,9 @@ $(function () {
     // showQuestion(STORE);
     // Hide the next button 
   $('#next').click(function (event) {  
-    
+    event.PreventDefault();
+    showQuestion();
+    $("#next").hide();
 
 
   });
