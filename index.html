@@ -1,46 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <meta name="description" content="BBQ Quiz">
-    <link href="bbq.css" rel="stylesheet" />
-    <title>Barbecue Quiz</title>
-</head>
-<body >
-    
-    <form class="quiz-wrapper">
-        <h1>THE BARBECUE QUIZ</h1>
-        <div class="quiz-container"></div></form>
-        <!-- <div id="questionBox" class="question">
-            Sample Question
-        </div>
-        <fieldset class="options">
-         <ul id="ul">
-                <li id="opt1" onclick="button(this)"></li>
-                <li id="opt2" onclick="button(this)"></li>
-                <li id="opt3" onclick="button(this)"></li>
-                <li id="opt4" onclick="button(this)"></li>
-            </ul>
-        </div>
-        <div class="score">
-        <div class="next">  
-                <button id="btnNext" type="button" onclick="next()">
-                  Next
-                </button>
-            </div>    
-            </div>
-            <div class="score-card"></div>
-                SCORE: <span id="scoreCard">0</span>
-            </fieldset> -->
-    
-    
-
-    
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script src="bbq.js"></script>
-
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Barbecue Quiz</title>
+  <link href="application.css" rel="stylesheet">
+<head>
+<body>
+  <header>
+    <h1>The Barbecue Quiz</h1>
+  </header>
+  <div class="content">
+    <div id="greeting">
+      <h2>Think you know about BBQ? Test your knowledge!</h2>
+      <button id="start" type="button">Start The Quiz</button>
+    </div>
+    <form id="questions" class="hidden">
+    </form>
+  </div>
+  <footer>
+    <p>Built for the Thinkful Quiz Application Project</p>
+  </footer>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>
+
