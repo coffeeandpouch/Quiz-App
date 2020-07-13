@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Barbecue Quiz</title>
-  <link href="application.css" rel="stylesheet">
+  <link href="bbq.css" rel="stylesheet">
 <head>
 <body>
   <header>
@@ -15,9 +15,17 @@
       <h2>Think you know about BBQ? Test your knowledge!</h2>
       <button id="start" type="button">Start The Quiz</button>
     </div>
-    <form id="questions" class="hidden">
+    <div id="next" hidden>
+      <button class="btnNext">Next</button>
+    </div>
+    <div id="score" hidden>
+      <button class="btnScore">Show Score</button>
+    </div>
+    <div id="restart" hidden>
+      <button class="btnRestart">Restart</button>
+    </div>
+    <form id="questions">
     </form>
-  </div>
   <footer>
     <p>Built for the Thinkful Quiz Application Project</p>
   </footer>
