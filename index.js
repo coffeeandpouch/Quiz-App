@@ -9,7 +9,7 @@ var STORE = {
         "c. Has been around ever since meat was cooked over an open flame",
         "d. Since Roman times",
       ],
-      answer: "c. Has been around ever since meat was cooked over an open flame",
+      answer: 2,
     },
     //2
     {
@@ -20,26 +20,26 @@ var STORE = {
         "c. New York, Deep Dish, and Detroit",
         "d. Texas, Carolina, Kansas City and Alabama",
       ],
-      answer: "d. Texas, Carolina, Kansas City and Alabama" ,
+      answer: 3,
     },
     //3
     {
       question: "Which style is know for using beef as the main meat source?",
       options: ["a.Carolina", "b.Alabama", "c.Texas", "d. Kansas City"],
-      answer: "c.Texas",
+      answer: 2,
     },
     //4
     {
       question:
         "Which region is famous for having 3 different styles of barbecue?",
       options: ["a.Alabama", "b.Carolina", "c.Texas", "d.Kansas City"],
-      answer: "b.Carolina",
+      answer: 1,
     },
     //5
     {
       question: "Which region is considered the crossroads of bbq?",
       options: ["a. Texas", "b. Alabama", "c. Kansas City", "d. Florida"],
-      answer: "c. Kansas City",
+      answer: 2,
     },
     //6
     {
@@ -50,7 +50,7 @@ var STORE = {
         "c. Pacific Northwest",
         "d. Homestyle",
       ],
-      answer: "a. Alabama",
+      answer: 0,
     },
     //7
     {
@@ -61,13 +61,13 @@ var STORE = {
         "c. Microwave",
         "d. Low and Slow",
       ],
-      answer: "d. Low and Slow",
+      answer: 3,
     },
     //8
     {
       question: "What temperature is most barbecue cooked to?",
       options: ["a. 145°F", "b. 32°F", "c. 203°C", "d. 203°F"],
-      answer: "d. 203°F",
+      answer: 3,
     },
     //9
     {
@@ -78,13 +78,13 @@ var STORE = {
         "c. Sous vide",
         "d. Flash fry",
       ],
-      answer: "b. Indirect heat",
+      answer: 1,
     },
     //10
     {
       question: "Which tool is most important for cooking barbecue?",
       options: ["a.Kitchen sink", "b. Grill/smoker", "c. Knife", "d. Spatula"],
-      answer: "b. Grill/smoker",
+      answer: 1,
     },
   ],
   correctAnswers: 0,
@@ -99,43 +99,46 @@ function populateOptions(currentQuestionOptions) {
       return `<li class="opt"><input type="radio" name="answer" value="${index}" required><label>${option}</label></input></li>`;
     })
     .join("");
-
 }
 //Shows question and builds submit button
 function showQuestion(store) {
   $("#questions").html(`
-        <div>Question #${store.questionIndex+1}</div>
+        <div>Question #${store.questionIndex + 1}</div><br>
+        <div>Score:<br>${store.correctAnswers}/${store.questions.length}</div>
         <div>${store.questions[store.questionIndex].question}</div>
         <ul id="ul">
             ${populateOptions(store.questions[store.questionIndex].options)}
-        </ul>    
+        </ul> 
         <input type="submit" class="btnSubmit"></input>
     `);
 }
 //toggle the greeting to hide
 function toggleGreeting() {
-    $('#greeting').toggle();
+  $("#greeting").toggle();
 }
 //Provides visual feedback on whether question is correct or not
 function provideFeedback(store, element) {
-    if (element.val() == store.questions[store.questionIndex].answer) {
-        store.correctAnswers++
-        $("#questions").html(`<p>Correct!</p>`)
-    } else {
-        $("#questions").html(`<p>Wrong!</p>
+  if (element.val() == store.questions[store.questionIndex].answer) {
+    store.correctAnswers++;
+    $("#questions").html(`<p>Correct!</p>`);
+  } else {
+    $("#questions").html(`<p>Wrong!</p>
         <div>The correct answer is:<br>
-        ${STORE.questions[STORE.questionIndex].answer}</div>`)
-
-    }
+        ${
+          STORE.questions[STORE.questionIndex].options[
+            STORE.questions[STORE.questionIndex].answer
+          ]
+        }</div>`);
+  }
 }
 //Computes the score at the end of the quiz
 function showScore(store) {
   $("#questions").html(`
-            <div>Score:${store.correctAnswers}/${store.questions.length}</div>`)
+            <div>Score:${store.correctAnswers}/${store.questions.length}</div>`);
 }
 
 //Function that starts the quiz and show the first question
-$(function () {
+$(function() {
   $("#start").click(function (event) {
     event.preventDefault;
     toggleGreeting();
@@ -143,38 +146,42 @@ $(function () {
   });
 
   //Submits user answer input and provides feedback
-  $("#questions").submit(function(event) {
+  function submitAnswerHandler() {}
+  $("#questions").submit(function (event) {
     event.preventDefault();
     $(".btnSubmit").hide();
-    var answer_element = $("input[name='answer']:checked")
+    var answer_element = $("input[name='answer']:checked");
     provideFeedback(STORE, answer_element);
     STORE.questionIndex++;
     if (STORE.questionIndex < 10) {
-      $('#next').toggle();
+      $("#next").toggle();
     } else {
-      $('#score').toggle();
+      $("#score").toggle();
     }
   });
   //What happens when the next button is clicked
-  $('#next').click(function (event) {
+  $("#next").click(function (event) {
     event.preventDefault();
-      $('#next').toggle();
-      showQuestion(STORE);
-  });
-  //When the show score button at the end of the quiz is clicked and generates restart button
-  $('#score').click(function (event) {
-    event.preventDefault();
-      $('#score').toggle();
-      showScore(STORE);
-      $('#restart').toggle();
-  });
-  //Shows what happens when the restart button is clicked
-  $('#restart').click(function (event) {
-    event.preventDefault();
-    STORE.questionIndex = 0;
-    STORE.correctAnswers = 0; 
-    $('#restart').toggle();
+    $("#next").toggle();
     showQuestion(STORE);
   });
-  
+  //When the show score button at the end of the quiz is clicked and generates restart button
+  $("#score").click(function (event) {
+    event.preventDefault();
+    $("#score").toggle();
+    showScore(STORE);
+    $("#restart").toggle();
+  });
+  //Shows what happens when the restart button is clicked
+  $("#restart").click(function (event) {
+    event.preventDefault();
+    STORE.questionIndex = 0;
+    STORE.correctAnswers = 0;
+    $("#restart").toggle();
+    showQuestion(STORE);
+  });
+});
+
+$(function () {
+  console.log("ready!");
 });

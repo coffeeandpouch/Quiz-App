@@ -1,114 +1,47 @@
 * {
   box-sizing: border-box;
   font-family: char BB;
-  font-size: 35px;
-  background-color: blue;
+  font-size: 40px;
+  
 }
 
 h1 {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  color: orange;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-.quiz-wrapper {
-  height: 500px;
-  width: 600px;
-  background-color: white;
-  margin: 30px auto;
-  border-radius: 8px;
-  padding: 25px;
-}
-
-.quiz-wrapper .question {
-  min-height: 50px;
-  background-color: orange;
-  border-radius: 8px;
-  color: black;
-  padding: 15px;
-  float: center;
-  width: 100%;
-  font-size: 25px;
-}
-
-.quiz-wrapper .options {
-  float: center;
-  width: 100%;
-}
-
-.quiz-wrapper .options ul {
-  list-style: none;
-  padding: 0%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.quiz-wrapper .options ul li {
-  display: inline-block;
+  color: #2951cb;
   background-color: black;
-  width: 46%;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 30px;
-  margin: 10px;
-  color: white;
-  box-shadow: 0px 3px 0px grey;
-  cursor: pointer;
+  margin: none;
 }
 
-.quiz-wrapper .options ul li.correct {
-  background-color: green;
-  box-shadow: 0px 3px 0px grey;
+body {
+    padding:none;
+    background-color: orange;
+}
+.quiz-container {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    padding: 10px;
+    background-color: #2951cb;
+    border:2px orange;
 }
 
-.quiz-wrapper .options ul li.wrong {
-  background-color: red;
-  box-shadow: 0px 3px 0px grey;
+form {
+    padding: none;
+    margin-bottom:2px;
 }
 
-.quiz-wrapper .options ul li:active {
-  box-shadow: 0px 0px 0px rgb(84, 110, 179);
+#ul, #li {
+    border: orange;
+    margin: none;
+    list-style: none;
 }
 
-.quiz-wrapper .score {
-  float: left;
-  width: 100%;
-}
 
-.quiz-wrapper .score .next {
-  width: 40%;
-  float: left;
-}
-
-.quiz-wrapper .score .next button {
-  padding: 10px 70px;
-  color: white;
-  background-color: #ec930d;
-  border: none;
-  border-radius: 8px;
-}
-
-.quiz-wrapper .score .score-card {
-  width: 60%;
-  float: left;
-  line-height: 40px;
-  font-size: 40px;
-}
-
-.quiz-wrapper .score .score-card span {
-  background-color: rgb(12, 88, 29);
-  padding: 5px 20px;
-  border: none;
-  color: white;
-  border-radius: 8px;
-}
-
-.question-box {
-  font-size: 60px;
+ @media only screen and (min-width: 320px) {
+    body {
+        background-color: bl#2951cb;
+    }
 }
