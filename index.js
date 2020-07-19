@@ -95,50 +95,67 @@ var STORE = {
 //Populates options for the current question
 function populateOptions(currentQuestionOptions) {
   return currentQuestionOptions
-    .map(function (option, index) {
-      return `<li class="opt"><input type="radio" name="answer" value="${index}" required><label>${option}</label></input></li>`;
-    })
+    .map(generateOption)
     .join("");
+}
+function generateOption(option, index) {
+  return `<li class="opt"><input type="radio" name="answer" value="${index}" required><label>${option}</label></input></li>`;
 }
 //Shows question and builds submit button
 function showQuestion(store) {
-  $("#questions").html(`
-        <div>Question #${store.questionIndex + 1}</div><br>
-        <div>Score:<br>${store.correctAnswers}/${store.questions.length}</div>
-        <div>${store.questions[store.questionIndex].question}</div>
-        <ul id="ul">
-            ${populateOptions(store.questions[store.questionIndex].options)}
-        </ul> 
-        <input type="submit" class="btnSubmit"></input>
-    `);
+  $("#questions").html(generateQuestion(store));
+}
+function generateQuestion(store) {
+  return `
+  <div>Question #${store.questionIndex + 1}</div><br>
+   <div>Score:<br>${store.correctAnswers}/${store.questions.length}</div>
+  <div>${store.questions[store.questionIndex].question}</div>
+  <ul id="ul">
+      ${populateOptions(store.questions[store.questionIndex].options)}
+  </ul> 
+  <input type="submit" class="btnSubmit"></input>
+`;
+
 }
 //toggle the greeting to hide
 function toggleGreeting() {
   $("#greeting").toggle();
 }
+
 //Provides visual feedback on whether question is correct or not
 function provideFeedback(store, element) {
   if (element.val() == store.questions[store.questionIndex].answer) {
     store.correctAnswers++;
-    $("#questions").html(`<p>Correct!</p>`);
+    $("#questions").html(generateCorrectAnswer());
   } else {
-    $("#questions").html(`<p>Wrong!</p>
-        <div>The correct answer is:<br>
-        ${
-          STORE.questions[STORE.questionIndex].options[
-            STORE.questions[STORE.questionIndex].answer
-          ]
-        }</div>`);
+    $("#questions").html(
+      generateIncorrectAnswer(
+        STORE.questions[STORE.questionIndex].options[
+          STORE.questions[STORE.questionIndex].answer
+        ]
+      )
+    );
   }
 }
+function generateCorrectAnswer() {
+  return `<p>Correct!</p>`;
+}
+function generateIncorrectAnswer(answer) {
+  return `<p>Wrong!</p>
+        <div>The correct answer is:<br>
+        ${answer}</div>`;
+}
+
 //Computes the score at the end of the quiz
 function showScore(store) {
-  $("#questions").html(`
-            <div>Score:${store.correctAnswers}/${store.questions.length}</div>`);
+  $("#questions").html(generateScore(store));
+}
+function generateScore(store) {
+  return `<div>Score:${store.correctAnswers}/${store.questions.length}</div>`
 }
 
 //Function that starts the quiz and show the first question
-$(function() {
+$(function () {
   $("#start").click(function (event) {
     event.preventDefault;
     toggleGreeting();
@@ -146,7 +163,6 @@ $(function() {
   });
 
   //Submits user answer input and provides feedback
-  function submitAnswerHandler() {}
   $("#questions").submit(function (event) {
     event.preventDefault();
     $(".btnSubmit").hide();
@@ -165,6 +181,7 @@ $(function() {
     $("#next").toggle();
     showQuestion(STORE);
   });
+
   //When the show score button at the end of the quiz is clicked and generates restart button
   $("#score").click(function (event) {
     event.preventDefault();
@@ -180,8 +197,4 @@ $(function() {
     $("#restart").toggle();
     showQuestion(STORE);
   });
-});
-
-$(function () {
-  console.log("ready!");
 });
